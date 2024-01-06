@@ -18,5 +18,6 @@ export const SidebarBlock = styled.div`
 export const ContentBlock = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   background-color: var(--bg-secondary);
 `;

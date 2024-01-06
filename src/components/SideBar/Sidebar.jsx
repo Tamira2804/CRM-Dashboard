@@ -10,7 +10,7 @@ const SidebarList = (pges) => {
     <List className="sidebar-list">
       {pages.map((page, index) => (
         <Item key={index}>
-          <StyledLink to={`/${page.toLowerCase().replace(/\s/g, "")}}`}>
+          <StyledLink to={`/${page.toLowerCase().replace(/\s/g, "")}`}>
             <Category>
               <Icon>
                 <use href={`${sprite}#icon-${page.toLowerCase()}`} />
