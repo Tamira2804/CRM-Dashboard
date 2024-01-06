@@ -13,12 +13,13 @@ const App = () => {
     <div className="App">
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<Dashboard user="Evana" />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/income" element={<Income />} />
-        <Route path="/promote" element={<Promote />} />
-        <Route path="/help" element={<Help />} />
+        <Route path="/" element={<Dashboard user="Evano" />}>
+          <Route path="/product" element={<Product />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/income" element={<Income />} />
+          <Route path="/promote" element={<Promote />} />
+          <Route path="/help" element={<Help />} />
+        </Route>
       </Routes>
     </div>
   );
