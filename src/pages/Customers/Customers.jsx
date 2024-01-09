@@ -1,5 +1,4 @@
-import React from "react";
-import customers from "../../services/customers.json";
+import React, { useState } from "react";
 import {
   Wrapper,
   Header,
@@ -12,17 +11,24 @@ import {
   Table,
   TableHeader,
   TableColumn,
+  PaginationWrapper,
+  CounterText,
+  Pagination,
+  PageNumber,
 } from "./Customers.styled";
 import sprite from "../../assets/images/icons/sprite.svg";
 
+import customers from "../../services/customers.json";
+import { pagination } from "helpers/pagination";
+
 const Customers = () => {
-  // const [tableRows, setTableRows] = useState([]);
+  // const [customers, setCustomers] = useState([]);
 
   // const fetchData = async (source) => {
   //   try {
   //     const response = await fetch(source);
   //     const data = await response.json();
-  //     setTableRows(data);
+  //     setCustomers(data);
   //     console.log("data", data);
   //   } catch (error) {
   //     console.error("Error fetching data:", error);
@@ -30,11 +36,34 @@ const Customers = () => {
   // };
 
   // useEffect(() => {
-  //   fetchData(customers); // Завантаження з локального JSON
-
-  //   // Потім, перейти на бекенд, змініти джерело даних
   //   // fetchData('URL_до_бекенду');
   // }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const customersPerPage = 8;
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const indexOfLastCustomer = currentPage * customersPerPage;
+  const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
+  const currentCustomers = customers.slice(
+    indexOfFirstCustomer,
+    indexOfLastCustomer
+  );
+
+  const totalPages = Math.ceil(customers.length / customersPerPage);
+
+  const pagesToShow = pagination(currentPage, totalPages);
 
   return (
     <Wrapper>
@@ -63,7 +92,7 @@ const Customers = () => {
           </tr>
         </thead>
         <tbody>
-          {customers.map((customer) => (
+          {currentCustomers.map((customer) => (
             <tr key={customer.id}>
               <TableColumn>{customer.name}</TableColumn>
               <TableColumn>{customer.company}</TableColumn>
@@ -78,6 +107,35 @@ const Customers = () => {
           ))}
         </tbody>
       </Table>
+      <PaginationWrapper>
+        <CounterText>
+          Showing data {indexOfFirstCustomer + 1} to {indexOfLastCustomer} of{" "}
+          {customers.length} entries
+        </CounterText>
+        <Pagination>
+          <PageNumber disabled={currentPage === 1} onClick={handlePrevPage}>
+            &lt;
+          </PageNumber>
+          {pagesToShow.map((number, index) => (
+            <PageNumber
+              key={index}
+              onClick={() =>
+                number !== "..." && handlePageClick(parseInt(number))
+              }
+              $active={currentPage === parseInt(number)}
+              disabled={number === "..."}
+            >
+              {number}
+            </PageNumber>
+          ))}
+          <PageNumber
+            disabled={currentPage === totalPages}
+            onClick={handleNextPage}
+          >
+            &gt;
+          </PageNumber>
+        </Pagination>
+      </PaginationWrapper>
     </Wrapper>
   );
 };

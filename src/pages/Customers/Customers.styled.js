@@ -18,6 +18,7 @@ export const TitleBlock = styled.div`
   flex-direction: column;
   margin-bottom: 40px;
 `;
+
 export const Title = styled.h2`
   font-family: "Poppins", sans-serif;
   font-size: 22px;
@@ -26,6 +27,7 @@ export const Title = styled.h2`
   line-height: normal;
   letter-spacing: -0.22px;
 `;
+
 export const SubTitle = styled.p`
   color: #16c098;
   font-family: "Poppins", sans-serif;
@@ -35,6 +37,7 @@ export const SubTitle = styled.p`
   line-height: normal;
   letter-spacing: -0.14px;
 `;
+
 export const InputWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -115,3 +118,38 @@ export const TableHeader = styled.th`
   color: var(--text-th);
   font-family: "Poppins", sans-serif;
 `;
+export const PaginationWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+`;
+
+export const CounterText = styled.p`
+  color: var(--text-secondary);
+
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.14px;
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+`;
+
+export const PageNumber = styled.div`
+  margin: 0 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.$active ? "var(--violet)" : "var(--bg-pagination)"};
+  color: ${(props) => (props.$active ? "var(--white)" : "var(--text-primary)")};
+  border: 1px solid
+    ${(props) => (props.$active ? "var(--violet)" : "var(--gray)")};
+  border-radius: 4px;
+`;
+export const ArrowButton = styled.button``;
