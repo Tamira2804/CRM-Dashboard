@@ -19,7 +19,7 @@ export const Icon = styled.svg`
 export const Title = styled.h1`
   color: var(--text-primary);
 
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 26px;
   font-style: normal;
   font-weight: 600;
@@ -30,7 +30,7 @@ export const Title = styled.h1`
 export const StyledSpan = styled.span`
   color: #838383;
 
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;

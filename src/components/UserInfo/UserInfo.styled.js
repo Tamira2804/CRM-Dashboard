@@ -16,14 +16,14 @@ export const InfoBlock = styled.div`
 `;
 export const Name = styled.p`
   color: var(--text-primary);
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.14px;
 `;
 export const Position = styled.p`
   color: var(--text-position);
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;

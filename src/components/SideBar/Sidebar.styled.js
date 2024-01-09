@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const List = styled.ul`
@@ -11,8 +11,6 @@ export const List = styled.ul`
   margin-bottom: 20px;
 `;
 
-export const Item = styled.li``;
-
 export const StyledLink = styled(Link)`
   display: flex;
   flex-direction: row;
@@ -23,11 +21,16 @@ export const StyledLink = styled(Link)`
   border-radius: 8px;
 
   &:hover,
+  &:focus,
   &:active {
-    background-color: var(--violet);
-    svg {
-      stroke: var(--white);
-    }
+    ${({ $isactive }) =>
+      $isactive &&
+      css`
+        background-color: var(--violet);
+        svg {
+          stroke: var(--white);
+        }
+      `};
   }
 `;
 export const Category = styled.div`
@@ -47,7 +50,7 @@ export const Icon = styled.svg`
 
 export const Text = styled.p`
   color: var(--text-secondary);
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

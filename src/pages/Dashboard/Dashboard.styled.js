@@ -11,8 +11,8 @@ export const SidebarBlock = styled.div`
   width: 306px;
   height: 100vh;
   background-color: var(--bg-primary);
-  border: 1px solid #111;
-  padding: 32px 36px 78px 28px;
+
+  padding: 36px 28px 78px 28px;
 `;
 
 export const ContentBlock = styled.div`
@@ -20,4 +20,17 @@ export const ContentBlock = styled.div`
   flex-direction: column;
   width: 100%;
   background-color: var(--bg-secondary);
+  padding: 36px 95px 41px 78px;
+
+  border: 2px solid green;
+`;
+
+export const Greeting = styled.p`
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 51px;
 `;

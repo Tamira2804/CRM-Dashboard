@@ -35,9 +35,10 @@ export const GlobalStyles = createGlobalStyle`
 
     --bg-secondary: #fafbff;
     --bg-pagination: #f5f5f5;
-    --bg-active: #ffc5c5;
+    --bg-active: rgba(22, 192, 152, 0.38);
     --bg-primary: #fff;
-    --bg-inactive: rgba(22, 192, 152, 0.38);
+    --bg-inactive: #ffc5c5;
+    --bg-input: #F9FBFF;
 
     --text-primary: #292d32;
     --text-secondary: #b5b7c0;
@@ -45,6 +46,7 @@ export const GlobalStyles = createGlobalStyle`
     --text-active: #008767;
     --text-inactive: #df0404;
     --text-position: #757575;
+    --text-th: #B5B7C0;
   }
 
    * {
@@ -53,8 +55,8 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
     
-     body {
-    font-family: 'Poppins';
+   body {
+    font-family: 'Poppins', sans-serif;
     background-color: var(--bg-primary);
     color: var(--text-primary);
   }

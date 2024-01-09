@@ -1,5 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import customers from "../../services/customers.json";
+import {
+  Wrapper,
+  Header,
+  TitleBlock,
+  Title,
+  SubTitle,
+  InputWrapper,
+  Input,
+  Icon,
+  Table,
+  TableHeader,
+  TableColumn,
+} from "./Customers.styled";
+import sprite from "../../assets/images/icons/sprite.svg";
 
 const Customers = () => {
   // const [tableRows, setTableRows] = useState([]);
@@ -23,38 +37,48 @@ const Customers = () => {
   // }, []);
 
   return (
-    <div>
-      <h2>All Customers</h2>
-      <p>Active members</p>
+    <Wrapper>
+      <Header>
+        <TitleBlock>
+          <Title>All Customers</Title>
+          <SubTitle>Active members</SubTitle>
+        </TitleBlock>
 
-      <input type="text" name="search" placeholder="Seach" />
-
-      <table>
+        <InputWrapper>
+          <Icon>
+            <use href={`${sprite}#icon-search-1`} />
+          </Icon>
+          <Input type="text" name="search" placeholder="Search" />
+        </InputWrapper>
+      </Header>
+      <Table>
         <thead>
           <tr>
-            <th>Customer Name</th>
-            <th>Company</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Country</th>
-            <th>Status</th>
+            <TableHeader>Customer Name</TableHeader>
+            <TableHeader>Company</TableHeader>
+            <TableHeader>Phone Number</TableHeader>
+            <TableHeader>Email</TableHeader>
+            <TableHeader>Country</TableHeader>
+            <TableHeader>Status</TableHeader>
           </tr>
         </thead>
         <tbody>
           {customers.map((customer) => (
             <tr key={customer.id}>
-              <td>{customer.name}</td>
-              <td>{customer.company}</td>
-              <td>{customer.phone}</td>
-              <td>{customer.email}</td>
+              <TableColumn>{customer.name}</TableColumn>
+              <TableColumn>{customer.company}</TableColumn>
+              <TableColumn>{customer.phone}</TableColumn>
+              <TableColumn>{customer.email}</TableColumn>
 
-              <td>{customer.country}</td>
-              <td>{customer.status ? "Active" : "Inactive"}</td>
+              <TableColumn>{customer.country}</TableColumn>
+              <TableColumn $status={customer.status}>
+                <span>{customer.status ? "Active" : "Inactive"}</span>
+              </TableColumn>
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+      </Table>
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,10 @@
 import React from "react";
-import { Wrapper, ContentBlock, SidebarBlock } from "./Dashboard.styled";
+import {
+  Wrapper,
+  ContentBlock,
+  SidebarBlock,
+  Greeting,
+} from "./Dashboard.styled";
 import Logo from "components/Logo";
 import SidebarList from "components/SideBar/Sidebar";
 import UserInfo from "components/UserInfo";
@@ -11,16 +16,20 @@ const user = {
   avatar: "http://picsum.photos/42",
 };
 
+const pages = ["Product", "Customers", "Income", "Promote", "Help"];
+
 const Dashboard = () => {
   return (
     <Wrapper>
       <SidebarBlock>
-        <Logo />
-        <SidebarList />
+        <div>
+          <Logo />
+          <SidebarList pages={pages} />
+        </div>
         <UserInfo user={user} />
       </SidebarBlock>
       <ContentBlock>
-        <h2> Hello {user.name}</h2>
+        <Greeting> Hello {user.name}👋🏼,</Greeting>
         <Outlet />
       </ContentBlock>
     </Wrapper>
