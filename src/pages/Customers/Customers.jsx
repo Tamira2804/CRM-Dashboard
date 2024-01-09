@@ -13,13 +13,11 @@ import {
   TableColumn,
   PaginationWrapper,
   CounterText,
-  Pagination,
-  PageNumber,
 } from "./Customers.styled";
 import sprite from "../../assets/images/icons/sprite.svg";
 
 import customers from "../../services/customers.json";
-import { pagination } from "helpers/pagination";
+import Paginate from "components/Paginate";
 
 const Customers = () => {
   // const [customers, setCustomers] = useState([]);
@@ -38,32 +36,27 @@ const Customers = () => {
   // useEffect(() => {
   //   // fetchData('URL_до_бекенду');
   // }, []);
-
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const customersPerPage = 8;
 
-  const handlePageClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    setCurrentPage(1); // Повертаємося на першу сторінку при зміні пошукового запиту
   };
 
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  };
+  const filteredCustomers = customers.filter((customer) =>
+    customer.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const indexOfLastCustomer = currentPage * customersPerPage;
   const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
-  const currentCustomers = customers.slice(
+  const currentCustomers = filteredCustomers.slice(
     indexOfFirstCustomer,
     indexOfLastCustomer
   );
 
-  const totalPages = Math.ceil(customers.length / customersPerPage);
-
-  const pagesToShow = pagination(currentPage, totalPages);
+  const totalPages = Math.ceil(filteredCustomers.length / customersPerPage);
 
   return (
     <Wrapper>
@@ -77,7 +70,13 @@ const Customers = () => {
           <Icon>
             <use href={`${sprite}#icon-search-1`} />
           </Icon>
-          <Input type="text" name="search" placeholder="Search" />
+          <Input
+            type="text"
+            name="search"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
         </InputWrapper>
       </Header>
       <Table>
@@ -110,31 +109,14 @@ const Customers = () => {
       <PaginationWrapper>
         <CounterText>
           Showing data {indexOfFirstCustomer + 1} to {indexOfLastCustomer} of{" "}
-          {customers.length} entries
+          {filteredCustomers.length} entries
         </CounterText>
-        <Pagination>
-          <PageNumber disabled={currentPage === 1} onClick={handlePrevPage}>
-            &lt;
-          </PageNumber>
-          {pagesToShow.map((number, index) => (
-            <PageNumber
-              key={index}
-              onClick={() =>
-                number !== "..." && handlePageClick(parseInt(number))
-              }
-              $active={currentPage === parseInt(number)}
-              disabled={number === "..."}
-            >
-              {number}
-            </PageNumber>
-          ))}
-          <PageNumber
-            disabled={currentPage === totalPages}
-            onClick={handleNextPage}
-          >
-            &gt;
-          </PageNumber>
-        </Pagination>
+
+        <Paginate
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
       </PaginationWrapper>
     </Wrapper>
   );

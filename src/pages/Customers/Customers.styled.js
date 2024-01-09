@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 812px;
   background-color: var(--bg-primary);
   border-radius: 20px;
   padding: 30px 44px 40px 38px;
@@ -54,7 +55,8 @@ export const InputWrapper = styled.div`
 export const Input = styled.input`
   width: 100%;
   background-color: inherit;
-  border: red;
+  border: none;
+  outline: none;
 
   &::placeholder {
     color: var(--text-secondary);
@@ -71,9 +73,14 @@ export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
 
-  th,
+  th {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--gray);
+  }
+
   td {
-    padding: 8px;
+    padding: 24px 8px;
     text-align: left;
     border-bottom: 1px solid var(--gray);
   }
@@ -118,6 +125,7 @@ export const TableHeader = styled.th`
   color: var(--text-th);
   font-family: "Poppins", sans-serif;
 `;
+
 export const PaginationWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -134,22 +142,3 @@ export const CounterText = styled.p`
   line-height: normal;
   letter-spacing: -0.14px;
 `;
-
-export const Pagination = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-`;
-
-export const PageNumber = styled.div`
-  margin: 0 5px;
-  padding: 6px 10px;
-  cursor: pointer;
-  background-color: ${(props) =>
-    props.$active ? "var(--violet)" : "var(--bg-pagination)"};
-  color: ${(props) => (props.$active ? "var(--white)" : "var(--text-primary)")};
-  border: 1px solid
-    ${(props) => (props.$active ? "var(--violet)" : "var(--gray)")};
-  border-radius: 4px;
-`;
-export const ArrowButton = styled.button``;
