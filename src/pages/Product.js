@@ -1,6 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+const Product = () => {
+  return (
+    <Wrapper>
+      <Title>Product</Title>
+    </Wrapper>
+  );
+};
+
+export default Product;
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -14,9 +24,16 @@ const Wrapper = styled.div`
   @media screen and (min-width: 1280px) {
   }
 `;
-
-const Product = () => {
-  return <Wrapper>Product</Wrapper>;
-};
-
-export default Product;
+export const Title = styled.h2`
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.22px;
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1280px) {
+  }
+`;
