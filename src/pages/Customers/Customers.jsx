@@ -9,6 +9,9 @@ import {
   Input,
   Icon,
   Table,
+  TableHeaderMobile,
+  TableColumnMobile,
+  MoreBtn,
   TableHeader,
   TableColumn,
   PaginationWrapper,
@@ -18,6 +21,7 @@ import sprite from "../../assets/images/icons/sprite.svg";
 
 import customers from "../../services/customers.json";
 import Paginate from "components/Paginate";
+import ModalDetails from "components/ModalDetails";
 
 const Customers = () => {
   // const [customers, setCustomers] = useState([]);
@@ -38,11 +42,17 @@ const Customers = () => {
   // }, []);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedClient, setSelectedClient] = useState(null);
   const customersPerPage = 8;
+
+  const handleShowMore = (client) => {
+    // Відкрити модальне вікно або встановити selectedClient для відображення деталей
+    setSelectedClient(client);
+  };
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    setCurrentPage(1); // Повертаємося на першу сторінку при зміні пошукового запиту
+    setCurrentPage(1);
   };
 
   const filteredCustomers = customers.filter((customer) =>
@@ -88,6 +98,7 @@ const Customers = () => {
             <TableHeader>Email</TableHeader>
             <TableHeader>Country</TableHeader>
             <TableHeader>Status</TableHeader>
+            <TableHeaderMobile></TableHeaderMobile>
           </tr>
         </thead>
         <tbody>
@@ -102,6 +113,11 @@ const Customers = () => {
               <TableColumn $status={customer.status}>
                 <span>{customer.status ? "Active" : "Inactive"}</span>
               </TableColumn>
+              <TableColumnMobile>
+                <MoreBtn onClick={() => handleShowMore(customer)}>
+                  Show More
+                </MoreBtn>
+              </TableColumnMobile>
             </tr>
           ))}
         </tbody>
@@ -118,6 +134,12 @@ const Customers = () => {
           setCurrentPage={setCurrentPage}
         />
       </PaginationWrapper>
+      {selectedClient && (
+        <ModalDetails
+          client={selectedClient}
+          onClose={() => setSelectedClient(null)}
+        />
+      )}
     </Wrapper>
   );
 };

@@ -46,5 +46,11 @@
 <symbol id="icon-chevron-right-2" viewBox="0 0 16 16" fill="transparent">
 <path d="M6 12L10 8L6 4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
+<symbol id="icon-cross-small" viewBox="0 0 32 32">
+<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M25.333 6.667l-18.667 18.667M6.667 6.667l18.667 18.667"></path>
+</symbol>
+<symbol id="icon-menu-hamburger" viewBox="0 0 32 32">
+<path stroke-miterlimit="4" stroke-width="2" d="M5.333 9.333h21.333M5.333 16h21.333M5.333 22.667h21.333"></path>
+</symbol>
 </defs>
 </svg>

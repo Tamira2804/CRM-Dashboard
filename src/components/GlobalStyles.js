@@ -49,23 +49,23 @@ export const GlobalStyles = createGlobalStyle`
     --text-th: #B5B7C0;
   }
 
-   * {
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
     
-   body {
+  body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-primary);
     color: var(--text-primary);
   }
 
-   a {
+  a {
     text-decoration: none;
   }
 
-img {
+  img {
     display: block;
     max-width: 100%;
     height: auto;

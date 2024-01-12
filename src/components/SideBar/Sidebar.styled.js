@@ -1,17 +1,31 @@
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
+
   list-style: none;
   margin: 0;
   padding: 0;
   gap: 20px;
   margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -20,17 +34,13 @@ export const StyledLink = styled(Link)`
   padding: 11px 8px 11px 11px;
   border-radius: 8px;
 
-  &:hover,
   &:focus,
+  &:hover,
   &:active {
-    ${({ $isactive }) =>
-      $isactive &&
-      css`
-        background-color: var(--violet);
-        svg {
-          stroke: var(--white);
-        }
-      `};
+    background-color: var(--violet);
+    svg {
+      stroke: var(--white);
+    }
   }
 `;
 export const Category = styled.div`
